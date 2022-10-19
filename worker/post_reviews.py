@@ -53,6 +53,15 @@ class GoogleReviews:
         time.sleep(5)
         # check_cookie(self.driver)
         time.sleep(5)
+        cookie_accept_btn = cookie_accept_btn_exists(self.driver)
+
+        if cookie_accept_btn:
+            click_on_button(self.driver, cookie_accept_btn)
+            logger.info(f'cookie_accept_btn pressed {cookie_accept_btn}')
+            time.sleep(7)
+            self.get_review_page()
+        else:
+            logger.info(f'NO COOKIE BUTTON!!!')
 
     def check_verify(self):
         def login_btn_exists(driver):
