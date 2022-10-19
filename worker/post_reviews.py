@@ -93,7 +93,7 @@ class GoogleReviews:
         logger.info(f'{buttons} to click')
         # click_on_button(button)
         logger.info('Click on button to leave review')
-        time.sleep(15)
+        time.sleep(25)
         frame = self.driver.find_element(By.XPATH, '//iframe[@class="goog-reviews-write-widget"]')
         time.sleep(7)
         self.driver.switch_to.frame(frame)
