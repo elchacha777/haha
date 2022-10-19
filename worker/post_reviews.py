@@ -89,6 +89,19 @@ class GoogleReviews:
             except:
                 logger.info('cant change to frame')
 
+    def wait_element_for_click_1(self, element):
+        attempts = 20
+        while attempts:
+            try:
+                input_email = self.driver.find_element( element)
+                input_email.click()
+                logger.info('Click on button')
+                return True
+            except Exception as e:
+                logger.info(f'{e}')
+                attempts -= 1
+                time.sleep(1)
+        return
 
 
     def open_review(self):
@@ -130,10 +143,12 @@ class GoogleReviews:
         b = self.find_button()
         logger.info('found button star')
         time.sleep(10)
-        try:
-            b.click()
-        except:
-            self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", b)
+        self.wait_element_for_click_1(b)
+        # for i in range(21):
+        #     try:
+        #         b.click()
+        #     except:
+        #         self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", b)
 
 
 
