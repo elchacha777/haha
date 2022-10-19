@@ -13,6 +13,7 @@
        - POSTGRES_USER:postgres
        - POSTGRES_PASSWORD:password
        - POSTGRES_DB=postgres
+       - POSTGRES_HOST_AUTH_METHOD=trust
       restart: always
 
 
