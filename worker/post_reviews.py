@@ -128,6 +128,8 @@ class GoogleReviews:
         # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
 
         b = self.find_button()
+        logger.info('found button star')
+        time.sleep(10)
         try:
             b.click()
         except:
