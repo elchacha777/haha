@@ -80,6 +80,16 @@ class GoogleReviews:
             except:
                 logger.info('cant change to frame')
 
+    def find_button(self):
+        for i in range(21):
+            try:
+                button = self.driver.find_element(By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+                return button
+                break
+            except:
+                logger.info('cant change to frame')
+
+
 
     def open_review(self):
         cookie_accept_btn = cookie_accept_btn_exists(self.driver)
@@ -114,9 +124,10 @@ class GoogleReviews:
         # self.driver.switch_to.frame(frame)
         switch_to_iframe(self.driver, frame)
         logger.info(f'switched to frame')
-        time.sleep(15)
+        time.sleep(20)
         # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
-        b = self.driver.find_element(By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+
+        b = self.find_button()
         try:
             b.click()
         except:
