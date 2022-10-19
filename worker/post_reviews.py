@@ -80,10 +80,10 @@ class GoogleReviews:
             except:
                 logger.info('cant change to frame')
 
-    def find_button(self):
+    def find_button(self, by, element):
         for i in range(21):
             try:
-                button = self.driver.find_element(By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
+                button = self.driver.find_element(by, element)
                 return button
                 break
             except:
@@ -140,7 +140,7 @@ class GoogleReviews:
         time.sleep(20)
         # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
 
-        b = self.find_button()
+        b = self.find_button(By.XPATH, '//*[@id="kCvOeb"]/div[1]/div[3]/div/div[2]/div/div[5]')
         logger.info('found button star')
         time.sleep(10)
         self.wait_element_for_click_1(b)
@@ -156,10 +156,11 @@ class GoogleReviews:
 
 
         time.sleep(20)
-
-        parent = self.driver.find_element(By.ID, 'ZRGZAf')
+        parent = self.find_button(By.ID, 'ZRGZAf')
+        # parent = self.driver.find_element(By.ID, 'ZRGZAf')
         logger.info(f'{parent}')
-        child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
+        child = self.find_button(By.CLASS_NAME, 'VfPpkd-RLmnJb')
+        # child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         logger.info(f'{child}')
 
         time.sleep(5)
