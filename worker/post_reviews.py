@@ -77,6 +77,8 @@ class GoogleReviews:
         if cookie_accept_btn:
             click_on_button(self.driver, cookie_accept_btn)
             logger.info(f'cookie_accept_btn pressed {cookie_accept_btn}')
+            time.sleep(7)
+            self.get_review_page()
         else:
             logger.info(f'NO COOKIE BUTTON!!!')
 
@@ -94,8 +96,8 @@ class GoogleReviews:
         # click_on_button(button)
         logger.info('Click on button to leave review')
         time.sleep(25)
-        frame = self.driver.find_element(By.XPATH, '//iframe[@class="goog-reviews-write-widget"]')
-        time.sleep(7)
+        frame = self.driver.find_element(By.NAME, "goog-reviews-write-widget")
+        time.sleep(10)
         self.driver.switch_to.frame(frame)
         logger.info(f'switched to frame')
         time.sleep(15)
