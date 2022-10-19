@@ -96,12 +96,13 @@ class GoogleReviews:
                 break
             except:
                 logger.info('cant change to frame')
+                time.sleep(1)
 
     def wait_element_for_click_1(self, element):
         attempts = 20
         while attempts:
             try:
-                input_email = self.driver.find_element( element)
+                input_email = self.driver.find_element(element)
                 input_email.click()
                 logger.info('Click on button')
                 return True
@@ -164,15 +165,14 @@ class GoogleReviews:
 
 
         time.sleep(20)
-        parent = self.find_button(By.ID, 'ZRGZAf')
         # parent = self.driver.find_element(By.ID, 'ZRGZAf')
-        logger.info(f'{parent}')
         child = self.find_buttons(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         # child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         logger.info(f'{child}')
 
-        time.sleep(5)
-        self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", child)
+        time.sleep(10)
+        self.wait_element_for_click_1(child)
+        # self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", child)
 
         logger.info('Review created')
 
