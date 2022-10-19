@@ -88,6 +88,14 @@ class GoogleReviews:
                 break
             except:
                 logger.info('cant change to frame')
+    def find_buttons(self, by, element):
+        for i in range(21):
+            try:
+                button = self.driver.find_element(by, element)[-1]
+                return button
+                break
+            except:
+                logger.info('cant change to frame')
 
     def wait_element_for_click_1(self, element):
         attempts = 20
@@ -159,7 +167,7 @@ class GoogleReviews:
         parent = self.find_button(By.ID, 'ZRGZAf')
         # parent = self.driver.find_element(By.ID, 'ZRGZAf')
         logger.info(f'{parent}')
-        child = self.find_button(By.CLASS_NAME, 'VfPpkd-RLmnJb')
+        child = self.find_buttons(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         # child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         logger.info(f'{child}')
 
