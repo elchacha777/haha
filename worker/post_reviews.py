@@ -55,9 +55,11 @@ class GoogleReviews:
 
 
         logger.info('Google enter password ')
-        time.sleep(5)
+        # time.sleep(5)
         # check_cookie(self.driver)
-        time.sleep(5)
+        time.sleep(20)
+        self.driver.save_screenshot('worker/screen_after_login.png')
+
 
     def check_verify(self):
         def login_btn_exists(driver):
