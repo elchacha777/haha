@@ -29,7 +29,7 @@ class GoogleReviews:
 
 
         # self.options.add_argument("--lang=en")
-        self.options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
+        # self.options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
 
         self.driver = uc.Chrome(use_subprocess=True, options=self.options)
 
@@ -44,11 +44,16 @@ class GoogleReviews:
         wait_element_for_send(self.driver, By.NAME, 'identifier', email)
         time.sleep(5)
         wait_element_for_click(self.driver, By.ID, 'identifierNext')
+        self.driver.save_screenshot('worker/screen_login.png')
+
         logger.info('Google enter email  ')
         time.sleep(5)
         wait_element_for_send(self.driver, By.NAME, 'Passwd', password)
         time.sleep(5)
         wait_element_for_click(self.driver, By.ID, 'passwordNext')
+        self.driver.save_screenshot('worker/screen_password.png')
+
+
         logger.info('Google enter password ')
         time.sleep(5)
         # check_cookie(self.driver)
@@ -64,12 +69,13 @@ class GoogleReviews:
 
     def get_review_page(self):
         self.driver.get(self.review_url)
-        time.sleep(10)
+        time.sleep(5)
+        self.driver.save_screenshot('worker/screen_review_page.png')
+        time.sleep(5)
         assert not self.driver.current_url.startswith('https://consent.google.com/')
 
 
-        # button = self.driver.find_element(By.XPATH, '//*[@id="gb"]/div/div/div[1]/div[2]/div/a').get_attribute('title')
-        # print(button)
+
 
     def find_frame(self):
         for i in range(21):
@@ -101,6 +107,7 @@ class GoogleReviews:
             self.get_review_page()
         else:
             logger.info(f'NO COOKIE BUTTON!!!')
+        self.driver.save_screenshot('worker/screen_google_maps.png')
 
         time.sleep(5)
         buttons = self.driver.find_elements(By.XPATH, '//div[@class="TrU0dc kdfrQc"]/button')[-1]
@@ -116,6 +123,7 @@ class GoogleReviews:
         # click_on_button(button)
         logger.info('Click on button to leave review')
         time.sleep(25)
+        self.driver.save_screenshot('worker/screen_button_review.png')
 
 
         # frame = self.driver.find_element(By.NAME, "goog-reviews-write-widget")
@@ -126,6 +134,7 @@ class GoogleReviews:
         logger.info(f'switched to frame')
         time.sleep(20)
         # button = self.driver.find_elements(By.CLASS_NAME, 's2xyy')
+        self.driver.save_screenshot('worker/screen_swith_frame.png')
 
         b = self.find_button()
         try:

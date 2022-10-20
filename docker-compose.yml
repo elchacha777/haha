@@ -72,11 +72,13 @@
       env_file: .env
       volumes:
          - ./logs/m_worker:/app/logs
+         - ./worker:/app/worker
       depends_on:
         - redis
         - postgres
       links:
         - postgres:postgres_host
+
 
    web:
 
