@@ -155,6 +155,8 @@ class GoogleReviews:
         logger.info(f'{parent}')
         child = parent.find_element(By.CLASS_NAME, 'VfPpkd-RLmnJb')
         logger.info(f'{child}')
+        self.driver.save_screenshot('worker/screen_stars.png')
+
 
         time.sleep(5)
         self.driver.execute_script("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", child)
